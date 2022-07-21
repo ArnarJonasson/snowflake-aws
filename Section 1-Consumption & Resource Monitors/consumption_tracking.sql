@@ -1,6 +1,8 @@
 
 use role accountadmin;
 
+#test
+
 select 
     round(sum(credits_used*3.28),2) as billed_amount,
     warehouse_name,
