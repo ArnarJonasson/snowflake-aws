@@ -43,6 +43,7 @@ show tasks;
 
 alter task DAILY_AGGREGATED_SUMMARY resume ; 
 alter task DAILY_AGGREGATED_SUMMARY suspend ; -- must be suspended to add dependent task
+alter task TSK_ORDERS_BY_SHIPMODE resume ;  -- dependent task must be resumed first
 
 -- Dependent Task ----- 
 
