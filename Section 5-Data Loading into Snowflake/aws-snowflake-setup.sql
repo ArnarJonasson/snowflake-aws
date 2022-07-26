@@ -10,6 +10,7 @@ CREATE STORAGE INTEGRATION aws_sf_data
   STORAGE_AWS_ROLE_ARN = ''
   STORAGE_ALLOWED_LOCATIONS = ('{your_bucket_name}');
 
+--- Use properties of row 5 and 7 and insert into AWS IAM Trust relationships ---
 desc INTEGRATION aws_sf_data;
 
 -- Grant usage access to Sysadmin Role ---
