@@ -42,12 +42,13 @@ select
 show tasks; 
 
 alter task DAILY_AGGREGATED_SUMMARY resume ; 
+alter task DAILY_AGGREGATED_SUMMARY suspend ; -- must be suspended to add dependent task
 
 -- Dependent Task ----- 
 
 create task TSK_ORDERS_BY_SHIPMODE
 warehouse = prod_xl
-AFTER TSK_DAILY_SALES_SUMMARY
+AFTER TSK_DAILY_SALES_SUMMARY as
 insert into "ECOMMERCE_DB"."ECOMMERCE_LIV"."ORDERS_BY_SHIPMODE" 
 select 
     round(sum(order_count)) as total_orders , 
@@ -56,7 +57,7 @@ select
     shipped_mode
 from 
     daily_aggregated_summary
-group by 3,4
+group by 3,4;
 
 
 ---- Check Task History ------ 
