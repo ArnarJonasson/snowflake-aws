@@ -18,6 +18,7 @@ list @stg_lineitem_json_dev;
 select $1 from @stg_lineitem_json_dev limit 10;
 
 -- insert into lineitem directly from staged location --- 
+--- insert into lineitem
 select 
     $1:L_ORDERKEY,
     $1:L_PARTKEY,
@@ -29,7 +30,7 @@ select
     $1:L_TAX,
     $1:L_RETURNFLAG,
     $1:L_LINESTATUS,
-    $1:L_SHIPDATE,
+    $1:L_SHIPDATE::varchar, --- This is how you can typecast (came with quotes "" from json)
     $1:L_COMMITDATE,
     $1:L_RECEIPTDATE,
     $1:L_SHIPINSTRUCT,
@@ -40,7 +41,7 @@ from
 -- limit 10;
 
 
--- Create a raw table with variant datatype column --- 
+-- Create a raw table with variant (semi or unstructured data type) datatype column --- 
 create table lineitem_raw_json (src variant );
 
 -- Ingest data into the raw table from staged location --- 
